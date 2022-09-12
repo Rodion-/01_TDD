@@ -84,7 +84,6 @@ int main ( int argc , char** argv )
 		
         try
         {
-
             cout<<"TDD"<<endl;
 
             result* res = nullptr;
