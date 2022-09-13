@@ -16,7 +16,6 @@ class TDD
     ~TDD(){}
 
     result* solve(double a, double b, double c);
-
 };
 
 result* TDD::solve(double a, double b, double c)
@@ -29,14 +28,14 @@ result* TDD::solve(double a, double b, double c)
 
         double D = b*b - 4*a*c;
 
-        //  4   a == 0
+        //  	4   a == 0
 
         if( fabs( a ) < eps )   throw a;
 
-        //  1     x^2+1 = 0 no roots a=1 b=0 c=1 =>D=-4
+        //  	1     x^2+1 = 0 no roots a=1 b=0 c=1 =>D=-4
         if( D < 0 ) return &res;
 
-        //  3
+        //  	3
         if( fabs( D ) < eps )
         {
             res.x1 = -b/2*a;
@@ -45,7 +44,7 @@ result* TDD::solve(double a, double b, double c)
             return &res;
         }
 
-        //  2   x^2-1 = 0  has two roots
+        //  	2   x^2-1 = 0  has two roots
         if( D > 0 )
         {
             res.x1 = ( -b - sqrt ( D ) ) / 2*a;
@@ -55,14 +54,14 @@ result* TDD::solve(double a, double b, double c)
         }
 
 
-        //  5
+        //  	5
         if( isnan( D ) )
         {
             std::cout<<"D is nan"<<std::endl;
             throw -1.0;
         }
 
-        //  6
+        //  	6
         if( isinf( D ) )
         {
             std::cout<<"D is inf"<<std::endl;
@@ -121,6 +120,5 @@ int main ( int argc , char** argv )
             cout<<"error : " << err <<endl;
         }
 	}
-
 	return 0;
 }
