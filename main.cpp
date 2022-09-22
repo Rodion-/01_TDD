@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <math.h>
+#include <assert.h>
 
 typedef struct result
 {
@@ -33,6 +34,8 @@ result* TDD::solve(double a, double b, double c)
         if( fabs( a ) < eps )   throw a;
 
         //  	1     x^2+1 = 0 no roots a=1 b=0 c=1 =>D=-4
+
+
         if( D < 0 ) return &res;
 
         //  	3
@@ -52,7 +55,6 @@ result* TDD::solve(double a, double b, double c)
 
             return &res;
         }
-
 
         //  	5
         if( isnan( D ) )
@@ -85,32 +87,92 @@ int main ( int argc , char** argv )
         {
             cout<<"TDD"<<endl;
 
+            static double a;
+            static double b;
+            static double c;
+
             result* res = nullptr;
 
-            res = tdd.solve( 1 , 0 , 1 );
+            a = 1;
+            b = 0;
+            c = 1;
 
-            if( res != nullptr )
-            cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+            {   //  test 1
 
-            res = tdd.solve( 1 , -2 , -1 );
+                assert( a == 1 );
+                assert( b == 0 );
+                assert( c == 1 );
 
-            if( res != nullptr )
-            cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+                res = tdd.solve( a , b, c );
 
-            res = tdd.solve( 1 , 2 , 1 );
+                if( res != nullptr )
+                cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+            }
 
-            if( res != nullptr )
-            cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+            a = 1;
+            b = -2;
+            c = -1;
 
-            res = tdd.solve( 0 , 2 , 1 );
+            {   //  test 2
 
-            if( res != nullptr )
-            cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+                assert( a == 1 );
+                assert( b == -2 );
+                assert( c == -1 );
 
-            res = tdd.solve( 1 , 0.002 , 0.0000001 );
+                res = tdd.solve( a , b, c );
 
-            if( res != nullptr )
-            cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+                if( res != nullptr )
+                cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+            }
+
+            a = 1;
+            b = 2;
+            c = 1;
+
+            {   //  test 3
+
+                assert( a == 1 );
+                assert( b == 2 );
+                assert( c == 1 );
+
+                res = tdd.solve( a , b, c );
+
+                if( res != nullptr )
+                cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+            }
+
+            a = 0;
+            b = 2;
+            c = 1;
+
+            {   //  test 4
+
+                assert( a == 0 );
+                assert( b == 2 );
+                assert( c == 1 );
+
+                res = tdd.solve( a , b, c );
+
+                if( res != nullptr )
+                cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+
+            }
+
+            a = 1;
+            b = 0.002;
+            c = 0.0000001;
+
+            {   //  test 5
+
+                assert( a == 1 );
+                assert( b == 0.002 );
+                assert( c == 0.0000001 );
+
+                res = tdd.solve( a , b, c );
+
+                if( res != nullptr )
+                cout<<"x1= "<<res->x1<<" x2= "<<res->x2<<endl;
+            }
 
             cout<<"end"<<endl;
 
