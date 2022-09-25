@@ -15,7 +15,7 @@ ENDIF()
 
 ADD_DEFINITIONS(-DTEST_RUN=${TEST_RUN})
 
-set(coreSources   main.cpp )
+set(coreSources   main.cpp tdd.cpp )
 
 
 add_executable(${targetName} ${coreSources} )
